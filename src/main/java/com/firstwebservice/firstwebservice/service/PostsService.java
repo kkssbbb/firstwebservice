@@ -2,13 +2,20 @@ package com.firstwebservice.firstwebservice.service;
 
 import com.firstwebservice.firstwebservice.domain.posts.Posts;
 import com.firstwebservice.firstwebservice.domain.posts.PostsRepository;
+
+import com.firstwebservice.firstwebservice.web.dto.PostsListResponseDto;
 import com.firstwebservice.firstwebservice.web.dto.PostsResponseDto;
 import com.firstwebservice.firstwebservice.web.dto.PostsSaveRequestDto;
 import com.firstwebservice.firstwebservice.web.dto.PostsUpdateRequestDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -37,5 +44,13 @@ public class PostsService {
 
 
         return new PostsResponseDto(entity);
+
+        }
+
+    @Transactional(readOnly = true) //(readOnly = true)을 주면 트랜잭션 범위는 유지하되, 조회기능만 남겨두어 조회 속도 개선
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }

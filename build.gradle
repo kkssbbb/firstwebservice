@@ -22,7 +22,7 @@ dependencies {//(3)
 
 	// lombok
 	implementation('org.projectlombok:lombok')
-	implementation 'junit:junit:4.13.1'
+	
 	implementation 'junit:junit:4.13.1'
 	annotationProcessor('org.projectlombok:lombok')
 	testImplementation('org.projectlombok:lombok')
@@ -35,6 +35,8 @@ dependencies {//(3)
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 
 	implementation('org.projectlombok:lombok') //롬복 라이브러리 추가
+
+	implementation('org.springframework.boot:spring-boot-starter-mustache') //스프링부트에서 머스테치 사용을 위해 머스테치 스타터 의존성 추가
 }
 dependencies {  //Spring Data Jpa 적용
 	implementation('org.springframework.boot:spring-boot-starter-data-jpa') //Spring Data Jpa 추상화라이브러리,스프링부트 버전에 맞춰 자동으로 JPA 관련 라이버리들의 버전을 관리해 준다.
