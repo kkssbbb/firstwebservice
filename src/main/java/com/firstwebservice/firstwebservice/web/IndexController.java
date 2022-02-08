@@ -1,10 +1,14 @@
-package com.firstwebservice.firstwebservice.web.dto;
+package com.firstwebservice.firstwebservice.web;
 
 import com.firstwebservice.firstwebservice.service.PostsService;
+import com.firstwebservice.firstwebservice.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -30,6 +34,15 @@ public class IndexController {  //페이지관련 컨트롤러는 모두 IndexCo
         model.addAttribute("posts", postsService.findAllDesc());
         return "index";
 
+    }
+
+    @GetMapping("/posts/update/{id}")
+    public String postsUpdate(@PathVariable Long id, Model model) {
+
+        PostsResponseDto dto = postsService.findById(id);
+        model.addAttribute("posts", dto);
+
+        return  "posts-update";
     }
 
 
