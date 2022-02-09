@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+=
+
+##보안을 위해 아래 파일이 깃에 올라가지 않게 추가함##
+application-oauth.properties
